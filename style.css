@@ -1,0 +1,181 @@
+@font-face {
+  font-family: 'Kollektif';
+  src: url('https://unifierhq.org/assets/Kollektif.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary-color: #ff4646;
+  --background-color: #1a0808;
+  --card-background: #2d1414;
+  --text-color: #ffe2e2;
+  --shadow-color: rgba(255, 0, 0, 0.2);
+  --card-glow: 0 0 20px rgba(255, 70, 70, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 70, 70, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 70, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 70, 70, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes borderGlow {
+  0% {
+    border-color: rgba(255, 70, 70, 0.3);
+  }
+  50% {
+    border-color: rgba(255, 70, 70, 0.8);
+  }
+  100% {
+    border-color: rgba(255, 70, 70, 0.3);
+  }
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+h1 {
+  font-family: 'Kollektif', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 15px rgba(255, 70, 70, 0.5);
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #ff8f8f;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.team-member {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  border: 2px solid rgba(255, 70, 70, 0.3);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.team-grid .team-member:nth-child(1) { animation-delay: 0.1s; }
+.team-grid .team-member:nth-child(2) { animation-delay: 0.2s; }
+.team-grid .team-member:nth-child(3) { animation-delay: 0.3s; }
+.team-grid .team-member:nth-child(4) { animation-delay: 0.4s; }
+.team-grid .team-member:nth-child(5) { animation-delay: 0.5s; }
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-glow);
+}
+
+.member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: block;
+  object-fit: cover;
+  border: 3px solid var(--primary-color);
+  transition: transform 0.3s ease;
+  animation: borderGlow 3s infinite;
+}
+
+.team-member:hover .member-image {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.member-info {
+  text-align: left;
+}
+
+.member-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffe2e2;
+}
+
+.member-role {
+  font-size: 0.95rem;
+  color: #ff8f8f;
+  margin-bottom: 0.5rem;
+}
+
+.member-icon {
+  font-size: 1.5rem;
+}
+
+footer {
+  text-align: left;
+  padding: 2rem 0;
+  color: #ff8f8f;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
