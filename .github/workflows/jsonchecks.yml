@@ -1,0 +1,36 @@
+name: Validate JSON and Check Images
+
+on:
+  pull_request:
+    paths:
+      - 'data.json'
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate JSON
+        run: |
+          if ! jq empty data.json; then
+            echo "Invalid JSON"
+            exit 1
+          fi
+
+  check-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check for Image Files
+        run: |
+          ids=$(jq -r 'keys[] | select(.!="aliases")' data.json)
+          missing_images=false
+          for id in $ids; do
+            if [ ! -f "pfp/$id.png" ]; then
+              echo "Warning: Image file pfp/$id.png is missing"
+              missing_images=true
+            fi
+          done
+          if [ "$missing_images" = true ]; then
+            echo "Some image files are missing. Please add them."
+          fi
