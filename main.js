@@ -18,7 +18,7 @@ function createTeamMemberCard(id, memberData) {
       src="https://collab.unifierhq.org/pfp/${id}.png" 
       alt="${memberData.displayname}'s profile picture"
       class="member-image"
-      onerror="this.src='https://via.placeholder.com/120'"
+      onerror="this.src='https://collab.unifierhq.org/pfp/unifier.webp'"
     >
     <div class="member-info">
       <h2 class="member-name">${memberData.displayname}</h2>
