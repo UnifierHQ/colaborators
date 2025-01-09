@@ -34,3 +34,4 @@ jobs:
           if [ "$missing_images" = true ]; then
             echo "Some image files are missing. Please add them."
           fi
+        
