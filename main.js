@@ -40,7 +40,6 @@ async function initializeTeamGallery() {
   
   Object.entries(teamData)
     .filter(([id, member]) => {
-      // Filter out aliases and hidden members
       const isAlias = id.toLowerCase().includes('aliases');
       const isHidden = member.hidden === 'web' || member.hidden === 'both';
       return !isAlias && !isHidden;
@@ -51,4 +50,27 @@ async function initializeTeamGallery() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', initializeTeamGallery);
+async function updateTeamList() {
+  const teamContainer = document.getElementById('team-members');
+  const currentTeamData = await fetchTeamData();
+  
+  if (Object.keys(currentTeamData).length === 0) {
+    console.error('Unable to load team data.');
+    return;
+  }
+
+  const newTeamData = await fetchTeamData();
+  
+  if (JSON.stringify(currentTeamData) !== JSON.stringify(newTeamData)) {
+    if (navigator.onLine) {
+      location.reload();
+    } else {
+      console.warn('No internet connection. Cannot reload the page.');
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initializeTeamGallery();
+  setInterval(updateTeamList, 900000); // Update every 15 mins.
+});
