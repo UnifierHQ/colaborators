@@ -41,8 +41,9 @@ async function initializeTeamGallery() {
   Object.entries(teamData)
     .filter(([id, member]) => {
       const isAlias = id.toLowerCase().includes('aliases');
+      const isNote = id.toLowerCase().includes('_note');
       const isHidden = member.hidden === 'web' || member.hidden === 'both';
-      return !isAlias && !isHidden;
+      return !isAlias && !isHidden && !isNote;
     })
     .forEach(([id, memberData]) => {
       const card = createTeamMemberCard(id, memberData);
