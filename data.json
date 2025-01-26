@@ -9,11 +9,6 @@
     "role": "Project advisor",
     "icon": "🕵️‍♀️"
   },
-  "549647456837828650": {
-    "displayname": "ItsAsheer",
-    "role": "Localization Lead & Developer",
-    "icon": "🛠️📚"
-  },
   "730375236197023785": {
     "displayname": "Lezetho",
     "role": "Trial Developer",
@@ -33,6 +28,11 @@
     "displayname": "Saphire",
     "role": "Trial Developer",
     "icon": "🔧"
+  },
+  "549647456837828650": {
+    "displayname": "ItsAsheer",
+    "role": "Code and localization collaborator",
+    "icon": "🤝"
   },
   "1188176582012047383": {
     "displayname": "arandomguy_53858",
